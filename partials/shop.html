@@ -1,0 +1,52 @@
+<div class="content-area">
+    <section class="page-section">
+        <div class="container-fluid container-shop">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 content" id="content">
+                    <!-- SHOP SORTING -->
+                    <div class="shop-sorting">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <span class="hidden-xs">Companies</span>
+                                <span class="select-wrapper hidden-xs">
+                                    <select data-ng-model="highPrice" class='selectClass'>
+                                        <option value="name">Apollo pharmaceuticals</option>
+                                        <option value="-price">Medplus pharmaceuticals</option>
+                                        <option value="price">Zota pharmaceuticals</option>
+                                    </select>
+                                </span>
+
+                                <span>Type </span>
+                                <span class="select-wrapper {{selectExtraClassShop}}">
+                                    <select data-ng-model="showCategory" data-ng-init="all">
+                                        <option value="" selected>All types</option>
+                                        <option data-ng-repeat="cat in categories" value="{{cat}}">{{cat}}</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /SHOP SORTING -->
+
+                    <!-- PRODUCT GRID -->
+                    <div class="row products grid">
+                        <div class="col-md-4 col-sm-6 no-padding-col" id={{product.productId}} data-ng-repeat="product in products | orderBy: highPrice | filter:showCategory">
+                            <div class="thumbnail no-border no-padding">
+                                <div class="media">
+                                    <a class="media-link" href="#/products/{{product.productId}}">
+                                        <img data-ng-src="{{loadimage(product.image)}}" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="caption text-center">
+                                    <h4 class="caption-title">{{product.name}}</h4>
+                                    <div class="price">{{product.price | currency}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /PRODUCT GRID -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

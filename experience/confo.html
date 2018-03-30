@@ -1,0 +1,114 @@
+<html>
+<div class="content-area">
+    <section class="page-section color">
+        <div class="container full-height min-height">
+            <div data-ng-show='myCart'>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="block-header header-cart text-center">Checkout</h2>
+                    </div>
+
+                    <div data-ng-class="customColumn" data-ng-repeat="cart in allCart">
+                        <div class="wrapper-cart">
+                            <div class="remove-product">
+                                <a href="" data-ng-click="deleteProductCart($index, cart.productPrice, cart.productQty)">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                            <div class="image">
+
+                            </div>
+
+                            <h4 class="text-center">Item: {{ cart.productName }}</h4>
+
+                            <div class="price-unit">Price: {{ cart.productPrice | currency }}</div>
+
+                            <div style="text-align: center; margin: 40px 0px;">
+
+                                <span class="input" data-ng-class="error_qty">Amount: {{cart.productQty}}</span>
+
+
+
+
+
+                            </div>
+
+                            <div class="subtotal">Total Amount:{{cart.productPrice * cart.productQty | currency}}</div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            </div>
+                </section>
+        </div>
+
+<input type="hidden" id="dummy" value="{{ Global.total }}"/>
+<h1 align="center"> Total: {{ Global.total | currency }}<br>
+<br><button id="button">Checkout</button> <h1>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="./node_modules/web3/dist/web3.min.js"></script>
+
+
+<script>
+   if (typeof web3 !== 'undefined') {
+       web3 = new Web3(web3.currentProvider);
+   } else {
+       web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+   }
+
+web3.eth.defaultAccount = web3.eth.accounts[0];
+
+       var ProjectContract = web3.eth.contract([
+         	{
+         		"constant": true,
+         		"inputs": [],
+         		"name": "getInstructor",
+         		"outputs": [
+         			{
+         				"name": "",
+         				"type": "uint256"
+         			}
+         		],
+         		"payable": false,
+         		"stateMutability": "view",
+         		"type": "function"
+         	},
+         	{
+         		"constant": false,
+         		"inputs": [
+         			{
+         				"name": "_total",
+         				"type": "uint256"
+         			}
+         		],
+         		"name": "setInstructor",
+         		"outputs": [],
+         		"payable": false,
+         		"stateMutability": "nonpayable",
+         		"type": "function"
+         	}
+]);
+
+
+       var Project = ProjectContract.at('0x9c0e53c09c0cd475d393f58f667ed342e5461126');
+
+       Project.getInstructor(function(error, result) {
+           if (!error) {
+               console.log($("#dummy").val());
+               
+           } else
+                console.log(error);
+       });
+
+       $("#button").click(function() {
+           Project.setInstructor($("#dummy").val());
+           window.location = "#/";
+
+       });
+
+    </script>
