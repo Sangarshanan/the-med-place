@@ -48,8 +48,8 @@
         </div>
 
 <input type="hidden" id="dummy" value="{{ Global.total }}"/>
-<h1 align="center"> Total: {{ Global.total | currency }}<br>
-<br><button id="button">Checkout</button> <h1>
+<br><br><br><h1 align="center"> Total: {{ Global.total | currency }}</h1>
+    <button id="button" style="background-color:white;width:150px;font-size: 20px;margin-left:auto;margin-right:auto;display:block;margin-top:5%;margin-bottom:0%">Checkout</button> 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="./node_modules/web3/dist/web3.min.js"></script>
 
@@ -95,7 +95,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 ]);
 
 
-       var Project = ProjectContract.at('0x9c0e53c09c0cd475d393f58f667ed342e5461126');
+       var Project = ProjectContract.at('0xaafb090e55ec71088e8bcc99b76c3ba92e00a22c');
 
        Project.getInstructor(function(error, result) {
            if (!error) {
@@ -112,3 +112,17 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
        });
 
     </script>
+
+  <style>
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+</style>
