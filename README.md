@@ -9,7 +9,7 @@ Open your console and navigate into the folder containing the website (cd to the
 Run browser sync to run the webpage on localhost
 ```sh
 npm install -g browser-sync
- browser-sync start --server --directory –files
+browser-sync start --server --files "css/*.css"
 ```
 [![N|Solid](https://image.ibb.co/dDfH0S/1.png)](https://nodesource.com/products/nsolid)
 
