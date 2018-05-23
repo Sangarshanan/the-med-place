@@ -1,6 +1,6 @@
 # The Med Place
 ### This installation is guide is only for windows
-First of all check if nodejs and npm are installed in your system 
+First check if nodejs and npm are installed in your system 
 ```sh
 npm –v
 node –v
